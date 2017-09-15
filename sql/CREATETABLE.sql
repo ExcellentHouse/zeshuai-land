@@ -1,0 +1,68 @@
+CREATE TABLE `people` (
+  `id` VARCHAR(32) NOT NULL,
+  `username` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `nickname` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `idNumber` VARCHAR(18) NOT NULL,
+  `sex` VARCHAR(2) NOT NULL,
+  `avatar` VARCHAR(255)  NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `role` (
+  `id` integer(11) NOT NULL,
+  `name` VARCHAR(255) NOT NULL UNIQUE,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+
+CREATE TABLE `people_role` (
+  `people_id` varchar(32) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY(people_id, role_id),
+  CONSTRAINT people_role_people FOREIGN KEY(`people_id`) REFERENCES `people`(`id`),
+  CONSTRAINT people_role_role FOREIGN KEY(`role_id`) REFERENCES `role`(`id`)
+)ENGINE=INNODB DEFAULT CHARSET=UTF8;
+CREATE TABLE `area` (
+  `id` VARCHAR(32) NOT NULL,
+  `city` VARCHAR(255) NOT NULL ,
+  `district` VARCHAR(255) NOT NULL,
+  `street` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `community` (
+  `id` VARCHAR(32) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `detailedAddress` VARCHAR(255) NOT NULL,
+  `builtYear` VARCHAR(255) NOT NULL,
+  `path` VARCHAR(255) NOT NULL,
+  `area_id` VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+
+CREATE TABLE `community` (
+  id VARCHAR(32) NOT NULL UNIQUE,
+  name VARCHAR(255) NOT NULL,
+  detailedAddress VARCHAR(255) NOT NULL,
+  builtYear INTEGER(11) NOT NULL,
+  houseType VARCHAR(255) NOT NULL,
+  average DOUBLE NOT NULL,
+  houseNumber INTEGER(11) NOT NULL,
+  path VARCHAR(255) NOT NULL,
+  area_id VARCHAR(32) NOT NULL,
+  PRIMARY KEY(id),
+  CONSTRAINT `COMMUNITY_FK_AREA_ID` FOREIGN KEY (`area_id`) REFERENCES area(`id`)
+)ENGINE=INNODB DEFAULT CHARSET=UTF8;
+
+
+
+
+
+
+
+
+
