@@ -2,8 +2,8 @@ package com.yyzstudy.zeshuailand;
 
 import com.yyzstudy.zeshuailand.dao.AreaRepository;
 import com.yyzstudy.zeshuailand.dao.CommunityRepository;
-import com.yyzstudy.zeshuailand.model.Area;
-import com.yyzstudy.zeshuailand.model.Community;
+import com.yyzstudy.zeshuailand.model.po.Area;
+import com.yyzstudy.zeshuailand.model.po.Community;
 import com.yyzstudy.zeshuailand.service.AreaService;
 import com.yyzstudy.zeshuailand.service.CommunityService;
 import com.yyzstudy.zeshuailand.util.UUIDUtil;
@@ -11,12 +11,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,6 +37,7 @@ public class ZeshuaiLandApplicationTests {
 
 	@Autowired
 	private CommunityService communityService;
+
 
 	@Test
 	public void contextLoads() {
@@ -82,6 +87,20 @@ public class ZeshuaiLandApplicationTests {
 				"/image/test2;",new Area("cb6ff253cc6a4e4896f4586b44db26c0",null,null,null));
 		communityRepository.save(Arrays.asList(community1,community2));
 		System.out.println(communityService.findAllPageing(0,10));
+	}
+	@Test
+	public void testSpecificationFilter(){
+		System.out.println(communityRepository);
+		Specification querySpecifi = new Specification<Community>() {
+			@Override
+			public Predicate toPredicate(Root<Community> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+
+				List<Predicate> predicates = new ArrayList<>();
+				predicates.add(criteriaBuilder.equal(root.get("area").get("city"), "afasdf"));
+				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+			}
+		};
+		communityRepository.findAll(querySpecifi);
 	}
 
 }

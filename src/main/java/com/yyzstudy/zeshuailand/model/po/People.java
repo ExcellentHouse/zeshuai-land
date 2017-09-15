@@ -1,4 +1,4 @@
-package com.yyzstudy.zeshuailand.model;
+package com.yyzstudy.zeshuailand.model.po;
 
 
 import javax.persistence.Column;

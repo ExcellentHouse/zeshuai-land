@@ -1,7 +1,7 @@
 package com.yyzstudy.zeshuailand.service;
 
 
-import com.yyzstudy.zeshuailand.model.Area;
+import com.yyzstudy.zeshuailand.model.po.Area;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,4 +17,5 @@ public interface AreaService {
     List<String> findAllDistrictByCity(String city);
 
     List<String> findAllStreetByCityAndDistrict(String city, String district);
+
 }

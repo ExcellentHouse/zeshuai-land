@@ -1,7 +1,7 @@
 package com.yyzstudy.zeshuailand.service;
 
 import com.yyzstudy.zeshuailand.dao.AreaRepository;
-import com.yyzstudy.zeshuailand.model.Area;
+import com.yyzstudy.zeshuailand.model.po.Area;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

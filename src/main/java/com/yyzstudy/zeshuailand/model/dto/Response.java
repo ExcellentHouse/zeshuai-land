@@ -1,4 +1,4 @@
-package com.yyzstudy.zeshuailand.model;
+package com.yyzstudy.zeshuailand.model.dto;
 
 public class Response {
 

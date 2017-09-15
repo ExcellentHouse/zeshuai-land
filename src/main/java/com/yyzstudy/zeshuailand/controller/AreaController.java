@@ -1,17 +1,15 @@
 package com.yyzstudy.zeshuailand.controller;
 
 
-import com.yyzstudy.zeshuailand.model.Response;
+import com.yyzstudy.zeshuailand.model.dto.Response;
 import com.yyzstudy.zeshuailand.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/area")

@@ -1,6 +1,6 @@
 package com.yyzstudy.zeshuailand.controller;
 
-import com.yyzstudy.zeshuailand.model.People;
+import com.yyzstudy.zeshuailand.model.po.People;
 import org.springframework.web.bind.annotation.RestController;
 
 

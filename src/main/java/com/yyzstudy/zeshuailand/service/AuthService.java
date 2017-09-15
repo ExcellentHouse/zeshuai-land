@@ -1,6 +1,6 @@
 package com.yyzstudy.zeshuailand.service;
 
-import com.yyzstudy.zeshuailand.model.People;
+import com.yyzstudy.zeshuailand.model.po.People;
 
 public interface AuthService {
 

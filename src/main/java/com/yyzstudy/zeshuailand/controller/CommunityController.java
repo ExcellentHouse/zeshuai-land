@@ -1,7 +1,7 @@
 package com.yyzstudy.zeshuailand.controller;
 
 
-import com.yyzstudy.zeshuailand.model.Response;
+import com.yyzstudy.zeshuailand.model.dto.Response;
 import com.yyzstudy.zeshuailand.service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

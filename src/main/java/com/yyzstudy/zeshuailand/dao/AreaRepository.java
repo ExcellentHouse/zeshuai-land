@@ -1,7 +1,6 @@
 package com.yyzstudy.zeshuailand.dao;
 
-import com.yyzstudy.zeshuailand.model.Area;
-import com.yyzstudy.zeshuailand.model.People;
+import com.yyzstudy.zeshuailand.model.po.Area;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
