@@ -25,4 +25,21 @@ public class CommunityController {
         result.put("communityList", communityService.findAllPageing(0,10));
         return Response.ok("ok", result);
     }
+
+    @GetMapping("/filter")
+    public Response search(String city,
+                           String district,
+                           String street,
+                           String average,
+                           String houseAge){
+        System.out.println(city);
+        System.out.println(district);
+        System.out.println(street);
+        System.out.println(average);
+        System.out.println(houseAge);
+        Map<String, Object> result =
+                new HashMap<>();
+        return Response.ok("ok", "asfasdf");
+    }
+
 }
