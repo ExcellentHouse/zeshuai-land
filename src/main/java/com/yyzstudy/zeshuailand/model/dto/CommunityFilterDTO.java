@@ -2,16 +2,22 @@ package com.yyzstudy.zeshuailand.model.dto;
 
 public class CommunityFilterDTO {
 
+
+
+
+
     private String name;
     private String city;
     private String district;
     private String street;
-    private Double average;
+    private String average;
     private String houseAge;
     private String houseType;
 
 
-    public CommunityFilterDTO(String name, String city, String district, String street, Double average, String houseAge, String houseType) {
+
+
+    public CommunityFilterDTO(String name, String city, String district, String street, String average, String houseAge, String houseType) {
         this.name = name;
         this.city = city;
         this.district = district;
@@ -69,11 +75,11 @@ public class CommunityFilterDTO {
         this.street = street;
     }
 
-    public Double getAverage() {
+    public String getAverage() {
         return average;
     }
 
-    public void setAverage(Double average) {
+    public void setAverage(String average) {
         this.average = average;
     }
 

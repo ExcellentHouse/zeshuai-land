@@ -96,7 +96,10 @@ public class ZeshuaiLandApplicationTests {
 			public Predicate toPredicate(Root<Community> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
 				List<Predicate> predicates = new ArrayList<>();
-				predicates.add(criteriaBuilder.equal(root.get("area").get("city"), "afasdf"));
+				predicates.add(criteriaBuilder.lt(root.get("builtYear"), 1996));
+				predicates.add(criteriaBuilder.gt(root.get("builtYear"), 1992));
+
+
 				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}
 		};
