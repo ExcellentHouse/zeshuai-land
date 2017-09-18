@@ -4,8 +4,10 @@ package com.yyzstudy.zeshuailand.model.po;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity(name = "Area")
+@Table(name = "area")
 public class Area{
 
     @Id

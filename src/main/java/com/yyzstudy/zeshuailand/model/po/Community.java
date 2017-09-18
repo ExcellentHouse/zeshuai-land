@@ -5,7 +5,8 @@ import com.yyzstudy.zeshuailand.model.po.Area;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Community")
+@Table(name = "community")
 public class Community {
 
     @Id
@@ -15,19 +16,19 @@ public class Community {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "detailedaddress")
+    @Column(name = "detailedAddress")
     private String detailedAddress;
 
-    @Column(name = "builtyear")
+    @Column(name = "builtYear")
     private Integer builtYear;
 
-    @Column(name = "housetype")
+    @Column(name = "houseType")
     private String houseType;
 
     @Column(name = "average")
     private Double average;
 
-    @Column(name = "housenumber")
+    @Column(name = "houseNumber")
     private Integer houseNumber;
 
     @Column(name = "path")

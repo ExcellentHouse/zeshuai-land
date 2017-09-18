@@ -5,7 +5,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity
+@Entity(name = "People")
+@Table(name = "people")
 public class People implements Serializable{
 
 
@@ -29,7 +30,7 @@ public class People implements Serializable{
     @Column(name = "name")
     private String name;
 
-    @Column(name = "idnumber")
+    @Column(name = "idNumber")
     private String idNumber;
 
     @Column(name = "sex")

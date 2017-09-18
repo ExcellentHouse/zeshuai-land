@@ -4,7 +4,8 @@ package com.yyzstudy.zeshuailand.model.po;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "Role")
+@Table(name = "role")
 public class Role {
 
 
