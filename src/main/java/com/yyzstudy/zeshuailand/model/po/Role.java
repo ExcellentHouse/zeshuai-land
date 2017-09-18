@@ -9,7 +9,7 @@ public class Role {
 
 
     @Id
-    private String id;
+    private int id;
 
 
     @Column(name = "name")
@@ -18,12 +18,21 @@ public class Role {
 
     public Role() {
     }
+    public Role(int id){
+        this.id = id;
+    }
 
-    public String getId() {
+
+    public Role(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -33,28 +42,5 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-    @JoinTable(name = "people_role", joinColumns = @JoinColumn(name = "people_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
-
-
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 }

@@ -5,6 +5,7 @@ import com.yyzstudy.zeshuailand.dao.CommunityRepository;
 import com.yyzstudy.zeshuailand.model.po.Area;
 import com.yyzstudy.zeshuailand.model.po.Community;
 import com.yyzstudy.zeshuailand.service.AreaService;
+import com.yyzstudy.zeshuailand.service.AuthService;
 import com.yyzstudy.zeshuailand.service.CommunityService;
 import com.yyzstudy.zeshuailand.util.UUIDUtil;
 import org.junit.Test;
@@ -12,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -37,6 +39,9 @@ public class ZeshuaiLandApplicationTests {
 
 	@Autowired
 	private CommunityService communityService;
+
+	@Autowired
+	private AuthService authService;
 
 
 	@Test
@@ -104,6 +109,16 @@ public class ZeshuaiLandApplicationTests {
 			}
 		};
 		communityRepository.findAll(querySpecifi);
+	}
+	@Test
+	public void testBcrypt(){
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//$2a$10$fwbYWzH5nwK4R.I7PXsr1u/x8rj7QDXKZUZzVASlYXojzqBiX3gCS
+		System.out.println(encoder.encode("qwer"));
+
+		authService.login("qwer", "qwer");
+		System.out.println(authService.login("qwer", "qwer"));
+
 	}
 
 }

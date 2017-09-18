@@ -1,10 +1,9 @@
 package com.yyzstudy.zeshuailand.model.po;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class People implements Serializable{
@@ -30,17 +29,36 @@ public class People implements Serializable{
     @Column(name = "name")
     private String name;
 
-    @Column(name = "idNumber")
+    @Column(name = "idnumber")
     private String idNumber;
 
     @Column(name = "sex")
     private String sex;
 
-    @Column(name = "avator")
-    private String avator;
+    @Column(name = "avatar")
+    private String avatar;
+
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinTable(name = "people_role", joinColumns = @JoinColumn(name = "people_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles;
 
 
-
+    @Override
+    public String   toString() {
+        return "People{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", idNumber='" + idNumber + '\'' +
+                ", sex='" + sex + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 
     public People() {
     }
@@ -113,11 +131,19 @@ public class People implements Serializable{
         this.sex = sex;
     }
 
-    public String getAvator() {
-        return avator;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvator(String avator) {
-        this.avator = avator;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
