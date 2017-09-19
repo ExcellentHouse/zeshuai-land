@@ -53,15 +53,17 @@ public class House {
     private Integer isSold;
 
     @OneToOne
+    @JoinColumn(name = "people_id")
+    private People people;
+
+    @OneToOne
     @JoinColumn(name = "community_id")
     private Community community;
-
-
 
     public House() {
     }
 
-    public House(String id, Double area, Integer room, Integer hall, Integer washroom, Integer floor, String hasElevator, String detailedAddress, Integer builtYear, String remark, String path, String type, Integer checkStatus, String review, Integer isSold, Community community) {
+    public House(String id, Double area, Integer room, Integer hall, Integer washroom, Integer floor, String hasElevator, String detailedAddress, Integer builtYear, String remark, String path, String type, Integer checkStatus, String review, Integer isSold, People people, Community community) {
         this.id = id;
         this.area = area;
         this.room = room;
@@ -77,6 +79,7 @@ public class House {
         this.checkStatus = checkStatus;
         this.review = review;
         this.isSold = isSold;
+        this.people = people;
         this.community = community;
     }
 
@@ -98,6 +101,7 @@ public class House {
                 ", checkStatus=" + checkStatus +
                 ", review='" + review + '\'' +
                 ", isSold=" + isSold +
+                ", people=" + people +
                 ", community=" + community +
                 '}';
     }
@@ -222,6 +226,14 @@ public class House {
         this.isSold = isSold;
     }
 
+    public People getPeople() {
+        return people;
+    }
+
+    public void setPeople(People people) {
+        this.people = people;
+    }
+
     public Community getCommunity() {
         return community;
     }
@@ -230,3 +242,4 @@ public class House {
         this.community = community;
     }
 }
+
