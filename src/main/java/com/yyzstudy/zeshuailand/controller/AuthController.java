@@ -31,6 +31,7 @@ public class AuthController {
         PeopleJwt peopleJwt = authService.login(people.getUsername(), people.getPassword());
         result.put("token",peopleJwt.getToken());
         result.put("nickname",peopleJwt.getNickname());
+        result.put("username", peopleJwt.getUsername());
         return Response.ok("ok", result);
     }
 

@@ -16,11 +16,26 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil implements Serializable {
 
+
+
     private static final long serialVersionUID = 3782283091374956312L;
+
+
+
 
     private static final String CLAIM_KEY_USERNAME = "sub";
 
+
+
+
+
     private static final String CLAIM_KEY_CREATED = "created";
+
+    private static final String CLAIM_KEY_EXPIRED = "expired";
+
+
+
+
 
     @Value("${jwt.secret}")
     private String secret;
@@ -55,7 +70,9 @@ public class JwtTokenUtil implements Serializable {
         Date expiration;
         try {
             final Claims claims = getClaimsFromToken(token);
-            expiration = claims.getExpiration();
+            claims.get("expired");
+            expiration = new Date((Long)claims.get("expired"));
+
         } catch (Exception e) {
             expiration = null;
         }
@@ -80,9 +97,10 @@ public class JwtTokenUtil implements Serializable {
 
 
     private Date generateExpirationDate() {
+
         return new Date(System.currentTimeMillis() + expiration * 1000);
     }
-    private Boolean isTokenExpired(String token) {
+    public Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
@@ -93,15 +111,18 @@ public class JwtTokenUtil implements Serializable {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        System.out.println(userDetails.getUsername());
+        System.out.println(new Date());
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
         claims.put(CLAIM_KEY_CREATED, new Date());
+        claims.put(CLAIM_KEY_EXPIRED, generateExpirationDate());
         return generateToken(claims);
     }
 
     String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
-                .setExpiration(generateExpirationDate())
+//                .setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
