@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface AreaService {
 
+    List<Area> findAll();
+
+
     Area save(Area area);
 
     List<Area> save(Collection<Area> areas);

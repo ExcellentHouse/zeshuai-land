@@ -16,6 +16,11 @@ public class AreaServiceImpl implements AreaService{
 
 
     @Override
+    public List<Area> findAll() {
+        return areaRepository.findAll();
+    }
+
+    @Override
     public Area save(Area area) {
         return areaRepository.save(area);
     }
