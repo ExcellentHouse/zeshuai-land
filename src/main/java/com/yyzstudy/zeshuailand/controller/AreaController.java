@@ -1,6 +1,7 @@
 package com.yyzstudy.zeshuailand.controller;
 
 
+import com.yyzstudy.zeshuailand.model.dto.AreaDto;
 import com.yyzstudy.zeshuailand.model.dto.Response;
 import com.yyzstudy.zeshuailand.model.po.Area;
 import com.yyzstudy.zeshuailand.service.AreaService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,16 +28,20 @@ public class AreaController {
 
     @GetMapping( value = "/all")
     public Response getAll(){
-//        HashMap<String, Object> result = new HashMap<>();
-//        result.put("areaList", areaService.findAll());
-//        Map<String,List<Area>> temp = areaService.findAll().stream().collect(Collectors.groupingBy(x -> x.getCity()));
-//        for(String key:temp.keySet()){
-//            List<Area> areaList = temp.get(key);
-//            Map<String, List<Area> > temp2= areaList.stream().collect(Collectors.groupingBy(x -> x.getDistrict()));
-//            temp.put(key,)
-//        }
-//        return Response.ok("ok", areaService.findAll().stream().collect(Collectors.groupingBy(x -> x.getCity())));
-        return null;
+        HashMap<String, Object> result = new HashMap<>();
+
+        List<AreaDto> areaDtoList;
+        areaDtoList = areaService.
+                findAllCity().
+                stream().map(x -> new AreaDto(x,x,new ArrayList<>()))
+                .collect(Collectors.toList());
+        areaDtoList.forEach(x -> areaService.
+                findAllDistrictByCity(x.getValue()).forEach(y -> x.getChildren().add(new AreaDto(y,y, new ArrayList<>()))));
+        areaDtoList.forEach(x -> x.getChildren().forEach(y-> areaService.findAllStreetByCityAndDistrict(x.getValue(),y.getValue()).forEach(z -> y.getChildren().add(new AreaDto(z,z,new ArrayList<>())))));
+
+        result.put("areaList", areaDtoList);
+
+        return Response.ok("ok", result);
     }
 
 
