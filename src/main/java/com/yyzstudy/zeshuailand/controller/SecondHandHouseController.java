@@ -3,6 +3,7 @@ package com.yyzstudy.zeshuailand.controller;
 
 import com.yyzstudy.zeshuailand.model.dto.Response;
 import com.yyzstudy.zeshuailand.model.dto.SecondHandHouseFilterDTO;
+import com.yyzstudy.zeshuailand.model.dto.SecondHandHouseInputDTO;
 import com.yyzstudy.zeshuailand.model.po.SecondHandHouse;
 import com.yyzstudy.zeshuailand.service.SecondHandHouseService;
 import com.yyzstudy.zeshuailand.util.UUIDUtil;
@@ -53,27 +54,28 @@ public class SecondHandHouseController {
         return Response.ok("ok", result);
     }
 
-    @PostMapping("upload")
+    @PostMapping("/upload")
     public Response upSecondHandHouse(@RequestParam("file") MultipartFile file){
         System.out.println(file.getOriginalFilename());
         return Response.ok();
     }
-    @PostMapping("batchupload")
-    public Response batchupload(@RequestBody()SecondHandHouseFilterDTO secondHandHouseFilterDTO, HttpServletRequest request){
-        System.out.println(secondHandHouseFilterDTO);
-        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("files[]");
-        files.forEach(file -> {
-            try(BufferedOutputStream stream  =
-                        new BufferedOutputStream(
-                                new FileOutputStream(new File(this.getClass().getClassLoader().getResource("").getPath()+"static/image/"+UUIDUtil.getUUID()+".jpg")))) {
-                stream.write(file.getBytes());
-                stream.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        System.out.println(files.size());
+    @PostMapping("/batchupload")
+    public Response batchupload(@RequestBody  SecondHandHouseInputDTO secondHandHouseInputDTO){
+        System.out.println(secondHandHouseInputDTO);
+//        List<MultipartFile> files = ((MultipartHttpServletRequest) httpServletRequest).getFiles("files");
+//        System.out.println(files.size());
+//        files.forEach(file -> {
+//            try(BufferedOutputStream stream  =
+//                        new BufferedOutputStream(
+//                                new FileOutputStream(new File(this.getClass().getClassLoader().getResource("").getPath()+"static/image/"+UUIDUtil.getUUID()+".jpg")))) {
+//                stream.write(file.getBytes());
+//                stream.close();
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//        System.out.println(files.size());
         return Response.ok();
     }
 }

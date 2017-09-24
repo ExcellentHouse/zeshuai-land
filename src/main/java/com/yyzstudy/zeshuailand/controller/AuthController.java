@@ -30,6 +30,7 @@ public class AuthController {
         HashMap<String, Object> result = new HashMap<>();
         PeopleJwt peopleJwt = authService.login(people.getUsername(), people.getPassword());
         result.put("token",peopleJwt.getToken());
+        result.put("people_id", peopleJwt.getId());
         result.put("nickname",peopleJwt.getNickname());
         result.put("username", peopleJwt.getUsername());
         return Response.ok("ok", result);
