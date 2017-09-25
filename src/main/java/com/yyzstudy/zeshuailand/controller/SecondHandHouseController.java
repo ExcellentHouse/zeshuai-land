@@ -9,6 +9,7 @@ import com.yyzstudy.zeshuailand.service.SecondHandHouseService;
 import com.yyzstudy.zeshuailand.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -59,8 +60,9 @@ public class SecondHandHouseController {
         System.out.println(file.getOriginalFilename());
         return Response.ok();
     }
-    @PostMapping("/batchupload")
-    public Response batchupload(@RequestBody  SecondHandHouseInputDTO secondHandHouseInputDTO){
+        @PostMapping(value = "/batchupload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Response batchupload(SecondHandHouseInputDTO secondHandHouseInputDTO){
+        System.out.println(21312313);
         System.out.println(secondHandHouseInputDTO);
 //        List<MultipartFile> files = ((MultipartHttpServletRequest) httpServletRequest).getFiles("files");
 //        System.out.println(files.size());

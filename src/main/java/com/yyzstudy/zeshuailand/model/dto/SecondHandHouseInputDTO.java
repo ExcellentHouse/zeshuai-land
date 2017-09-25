@@ -6,7 +6,6 @@ import java.util.List;
 
 public class SecondHandHouseInputDTO {
     private String one;
-    List<MultipartFile> files;
 
 
     public SecondHandHouseInputDTO() {
@@ -16,7 +15,7 @@ public class SecondHandHouseInputDTO {
     public String toString() {
         return "SecondHandHouseInputDTO{" +
                 "one='" + one + '\'' +
-                ", files=" + files +
+                ", files=" +
                 '}';
     }
 }
