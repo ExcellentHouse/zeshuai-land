@@ -2,6 +2,7 @@ package com.yyzstudy.zeshuailand;
 
 import com.yyzstudy.zeshuailand.dao.AreaRepository;
 import com.yyzstudy.zeshuailand.dao.CommunityRepository;
+import com.yyzstudy.zeshuailand.dao.PeopleRepository;
 import com.yyzstudy.zeshuailand.model.po.Area;
 import com.yyzstudy.zeshuailand.model.po.Community;
 import com.yyzstudy.zeshuailand.service.AreaService;
@@ -43,6 +44,9 @@ public class ZeshuaiLandApplicationTests {
 	@Autowired
 	private AuthService authService;
 
+
+	@Autowired
+	private PeopleRepository peopleRepository;
 
 	@Test
 	public void contextLoads() {
@@ -119,6 +123,11 @@ public class ZeshuaiLandApplicationTests {
 		authService.login("qwer", "qwer");
 		System.out.println(authService.login("qwer", "qwer"));
 
+	}
+
+	@Test
+	public void testPeopleRepository(){
+		System.out.println();
 	}
 
 }
